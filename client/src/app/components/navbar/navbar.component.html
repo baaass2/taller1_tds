@@ -1,0 +1,30 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li [routerLinkActive]="['active']"><a [routerLink]="['/']" class="nav-link px-2 link-secondary">Home</a></li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"><a [routerLink]="['/profile']" class="nav-link px-2 link-secondary">Perfil</a></li>
+        <li> 
+          <div class="dropdown">
+          <button *ngIf="authService.loggedIn()" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dashboard
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" [routerLink]="['/users']">Usuarios</a>
+          </div>
+        </div></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']"><a [routerLink]="['/login']" class="nav-link px-2 link-secondary" >Iniciar Sesión</a></li>
+            <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']"><a [routerLink]="['/register']" class="nav-link px-2 link-secondary">Registrarse</a></li>
+            <li *ngIf="authService.loggedIn()"><a (click)="onLogoutClick()" class="nav-link px-2 link-secondary" href="">Cerrar Sesión</a></li>
+
+          </ul>
+      </div>
+    </header>
+  </div>

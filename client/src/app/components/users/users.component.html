@@ -1,0 +1,67 @@
+<div class="card">
+    <div class="card-header text-uppercase">
+        Ingreso de usuarios
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="user" [(ngModel)]="user.name">
+                </div>
+                <div class="col-md-4">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="user.username">
+                </div>
+                <div class="col-md-4">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="user.password">
+                </div>
+                <div class="col-md-4">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" name="email"
+                        [(ngModel)]="user.email">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">&nbsp;</label>
+                    <div class="d-grid gap-3">
+                        <button *ngIf="!editando" type="submit" class="btn btn-primary"
+                            (click)="enviarFormulario()">Ingresar</button>
+                        <button *ngIf="editando" type="submit" class="btn btn-primary"
+                            (click)="editarUsuario(user)">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{mensaje}}
+    <div class="card-footer">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Contraseña </th>
+                        <th>Correo electrónico</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of users; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{usuario.name}}</td>
+                        <td>{{usuario.username}}</td>
+                        <td>{{usuario.password}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>
+                            <button class="btn btn-warning mr-2" (click)="cargarUsuario(usuario)">Editar</button>
+                            <button class="btn btn-danger" (click)="eliminarUsuario(usuario)">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
